@@ -1,14 +1,149 @@
-body {
-  margin: 0;
-  padding: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+* {
+  margin: 0px;
+  padding: 0px;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+
+.header {
+  background: black;
+  color: white;
+  padding: 10px;
+  padding-left: 5%;
+  margin-bottom: 3%;
 }
+
+/*  */
+.music-main {
+  /* padding: 10px; */
+  margin-left: 3%;
+  margin-right: 3%;
+  padding: 2%;
+  border-radius: 9px;
+  /* border: 1px solid red; */
+  background: white;
+}
+body {
+  background: #DCDCDC;
+}
+/* Add new truck */
+.add-new-truck {
+  width: 30%;
+  margin-left: 5%;
+  height: 350%;
+  display: inline-block;
+  vertical-align: middle;
+  /* border: 1px solid red; */
+  margin-top: -85px;
+
+
+}
+
+.add-new-truck-block{
+  padding: 10px;
+  margin-top: 10px;
+  /* border: 1px solid red; */
+}
+
+
+.add-new-playlist span{
+  /* border: 1px solid red; */
+  display:inline-block;
+  width:60px;
+}
+.add-new-playlist span.span-id{
+  margin-top: 10px;
+}
+
+.add-new-playlist input{
+  /* margin-left: 10px; */
+  margin-bottom: 10px;
+ }
+
+input.handleSubmit {
+  width: 240px;
+  color: white;
+  padding: 2px;
+  background-color: green;
+  border: 1px solid white;
+  border-radius: 9px;
+}
+
+input.handleSubmit:hover {
+  border: 1px solid green;
+
+}
+/* Create PLAYLIST */
+.all-truck-block-details span{
+  width: 85%;
+  padding-bottom: 5px;
+  padding-left: 10px;
+  display: inline-block;
+  /* margin-right: 50%; */
+  /* border: 1px solid red; */
+
+}
+.all-truck-block {
+  overflow-y: scroll;
+}
+
+
+.all-truck-block p{
+  text-align: center;
+
+}
+
+.all-truck-block-details button{
+  border-radius: 50%;
+  padding-left: 3px;
+  padding-bottom: 1px;
+  padding-right: 3px;
+  background: white;
+  color: black;
+  border-color: white;
+}
+.all-truck-block-details button:hover{
+  background: black;
+  color: white;
+  border-color: black;
+}
+
+.create-playlist {
+  height: 350px;
+  width: 60%;
+  display: inline-block;
+  vertical-align: middle;
+
+}
+
+.create-playlist h3 {
+  text-align: center;
+
+}
+.all-truck{
+  display: inline-block;
+  vertical-align: middle;
+  width: 45%;
+  padding: 1%;
+  margin-right: 3%;
+
+}
+.all-truck-block {
+  border: 1px solid black;
+  border-radius: 5px;
+  width: 100%;
+  height: 200px;
+}
+
+
+/* .add-song{
+  display: inline-block;
+  border: 1px solid red;
+  width: 45%;
+}
+.add-song-block {
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 10px;
+  width: 250px;
+  height: 200px;
+} */
