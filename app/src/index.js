@@ -14,7 +14,6 @@ ReactDOM.render(
   </Provider>, document.getElementById('root')
 );
 
-
 serviceWorker.unregister();
 
 // console.log("Состояние стора:" + store.getState());

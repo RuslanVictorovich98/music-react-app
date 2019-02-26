@@ -1,26 +1,30 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {bindActionCreators} from 'redux';
-import {select} from '../actions/music_actions'
-import {details} from '../actions/details_actions'
-import DetailsMusic from './details_music_containers'
-import { store } from '..';
+import {select} from '../actions/music_actions';
+import {remove} from '../actions/music_actions';
+import {details} from '../actions/details_actions';
+import {edit} from '../actions/details_actions';
+import DetailsMusic from './details_music_containers';
 import '../index.css';
+import right from './img/right.png';
+import deleteTrack from './img/delete-24.png';
+import editTrack from './img/edit.png';
+// import {addNewTrack} from '../actions/details_actions';
+// import {bindActionCreators} from 'redux';
 // import mainReducer from '../reducers/index';
+// import { store } from '..';
 
 class MusicAdd extends Component {
 
   state = {
     result: [
       {
-        id: 2,
         artist: "Drake",
         name: "Black",
         time: "2:15",
         year: 2012,
       },
       {
-        id: 3,
         artist: "Adel",
         name: "White",
         time: "3:10",
@@ -30,13 +34,14 @@ class MusicAdd extends Component {
   };
 
 
-  showList() { // добавление песни в глобальный STORE
-    return this.state.result.map((truck) =>    {
+  showList() { // вывод всех песен и добавление песни в глобальный STORE
+    return this.props.track.map((track, i) =>    {
       return (
-        <div key={truck.id} className="all-truck-block-details">
-            <span onClick={() => this.props.details(truck)}>{truck.artist} - {truck.name}</span>
-            <button type="button" name="button" onClick={() => this.props.select(truck)} >+</button>
-            {console.log(truck)}
+        <div key={i} className="all-track-block-details">
+          <span onClick={() => this.props.details(track)}>{track.artist} - {track.name}</span>
+          <img src={right} alt="+" onClick={() => this.props.select(track)}/>
+          <img src={editTrack} alt="|" onClick={() => this.props.edit(track)} width="20px"/>
+          <img src={deleteTrack} alt="-" onClick={() => this.props.remove(i)}/>
         </div>
       );
     }
@@ -44,128 +49,81 @@ class MusicAdd extends Component {
   }
 
   storeMusicData() { // Вывод стора
-    return this.props.music.map ((music) => {
+    return this.props.music.map ((music, i) => {
       return(
-        <div key={music.id}>
-            <p onClick={() => this.props.details(music)}>{music.artist} - {music.name}</p>
+        <div key={i}>
+            <span onClick={() => this.props.details(music)}>{music.artist} - {music.name}</span>
         </div>
       )
     });
   }
-
-
-
-// CREATE TRUCK
-  id = React.createRef();
-  name = React.createRef();
-  time = React.createRef();
-  year = React.createRef();
-  artist = React.createRef();
-
-  handleSubmit = this.handleSubmit.bind(this);
-  getState = this.getState.bind(this);
-
-
-
-
-  handleSubmit(){
-  this.setState({result: [...this.state.result, {
-                              ["id"]:+  this.id.current.value,
-                              ["artist"]: this.artist.current.value,
-                              ["name"]: this.name.current.value,
-                              ["time"]: this.time.current.value,
-                              ["year"]:+this.year.current.value
-                             }]})
-
-  console.log("Your input value is: " + this.state +
-              "\nid:"   + this.id.current.value +
-              "\nartist:"   + this.artist.current.value +
-              "\nname:" + this.name.current.value +
-              "\ntime:" + this.time.current.value +
-              "\nyear:" + this.year.current.value)
-  }
-
   getState() {
-    console.log(this.state);
-
+    // console.log(this.state);
   }
 
   showState(){
-    return this.state.addTruck.map((truck) =>{
+    return this.state.addTrack.map((track) =>{
       return (
         <div>
-          {truck.name}
+          {track.name}
         </div>
       );
     });
   }
 
-  createPlaylist() {
-    return (
-      <div className="add-new-playlist">
-        <span className="span-id">ID: </span><input type="number" ref={this.id} /><br/>
-        <span>Artist: </span><input type="text"  ref={this.artist} /><br/>
-        <span>Name: </span><input type="text"  ref={this.name} /><br/>
-        <span>Time: </span><input type="time"  ref={this.time} /><br/>
-        <span>Year: </span><input type="number"  ref={this.year} /><br/>
-        <input className="handleSubmit" type="submit" onClick={this.handleSubmit}/>
 
 
-      </div>
-    );
-  }
-// ****
+
+// return HTML
   showDetails(){
     return (
-      <div>
-      <div className="create-playlist">
-        <h3>Create PLAYLIST:</h3>
-        <div className="all-truck">
-          <h4>All truck:</h4>
-          <div className="all-truck-block">
+      <div className="container create-playlist ">
+        <h4>Create PLAYLIST:</h4>
+        <div className=" row">
+        <div className="container all-track col-md-12 col-xs-12 col-sm-12 col-lg-6">
+          <h5>All tracks:</h5>
+          <div className="container all-track-block ">
             {this.showList()}
           </div>
         </div>
 
-        <div className="all-truck">
-          <h4>Added songs to the store:</h4>
-          <div className="all-truck-block">
+        <div className="container all-track col-md-12 col-xs-12 col-sm-12 col-lg-6">
+          <h5>Added songs :</h5>
+          <div className="container all-track-block ">
             {this.storeMusicData()}
           </div>
         </div>
-      </div>
-      <div className="add-new-truck">
-        <h3>Add new truck:</h3>
-        {this.createPlaylist()}
-        <DetailsMusic />
-      </div>
+        </div>
       </div>
     );
   }
-
-// return HTML
+// main
   render(){
     return (
       <div>
         {this.showDetails()}
-        <button type="button" onClick={this.getState}>Get State!</button>
-
+        <DetailsMusic/>
       </div>
     );
 
   }
 }
 
+// <button type="button" onClick={this.getState}>Get State!</button>
 
 function mapStateToProps(state) {
   return {
     music: state.music,
-    details: state.details
+    track: state.allTracks
   };
 }
-
-function mapDispatchToProps (dispatch) {
-  return bindActionCreators({select: select, details: details},dispatch);
-}
+const mapDispatchToProps = (dispatch) => {
+    return {
+        select: (i) => dispatch(select(i)),
+        details: (i) => dispatch(details(i)),
+        remove: (i) => dispatch(remove(i)),
+        edit: (i) => dispatch(edit(i)),
+    };
+};
 
 export default connect (mapStateToProps, mapDispatchToProps)(MusicAdd);

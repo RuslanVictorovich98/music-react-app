@@ -1,12 +1,15 @@
 import {combineReducers} from 'redux';
 // import musicReducer from './music_reducers';
 import {musicInfoReducers} from './music_reducers';
+import {allTracksReducers} from './music_reducers';
 import {musicDetailsReducers} from './details_music_reducers';
+import {musicEditReducers} from './details_music_reducers';
 
 const mainReducer = combineReducers ({
     music: musicInfoReducers,
-    details: musicDetailsReducers
-  // music: musicReducer,
+    details: musicDetailsReducers,
+    allTracks: allTracksReducers,
+    musicEdit: musicEditReducers,
 });
 
 export default mainReducer;
