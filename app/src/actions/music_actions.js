@@ -4,6 +4,7 @@ export const REMOVE_MUSIC = 'REMOVE_MUSIC';
 export const SAVE_CHANGES = 'SAVE_CHANGES';
 
 export function select(music) {
+    console.log(music);
     return {
       type: ADD_MUSIC,
       payload: music,

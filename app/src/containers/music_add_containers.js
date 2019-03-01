@@ -33,8 +33,8 @@ class MusicAdd extends Component {
     ],
   };
 
-
-  showList() { // вывод всех песен и добавление песни в глобальный STORE
+// вывод всех песен и добавление песни в глобальный STORE
+  showList() {
     return this.props.track.map((track, i) =>    {
       return (
         <div key={i} className="all-track-block-details">
@@ -44,11 +44,11 @@ class MusicAdd extends Component {
           <img src={deleteTrack} alt="-" onClick={() => this.props.remove(i)}/>
         </div>
       );
-    }
-  );
+    });
   }
 
-  storeMusicData() { // Вывод стора
+// Вывод STORE
+  storeMusicData() {
     return this.props.music.map ((music, i) => {
       return(
         <div key={i}>
@@ -57,51 +57,30 @@ class MusicAdd extends Component {
       )
     });
   }
-  getState() {
-    // console.log(this.state);
-  }
-
-  showState(){
-    return this.state.addTrack.map((track) =>{
-      return (
-        <div>
-          {track.name}
-        </div>
-      );
-    });
-  }
-
-
-
+  getState() {}
 
 // return HTML
-  showDetails(){
-    return (
-      <div className="container create-playlist ">
-        <h4>Create PLAYLIST:</h4>
-        <div className=" row">
-        <div className="container all-track col-md-12 col-xs-12 col-sm-12 col-lg-6">
-          <h5>All tracks:</h5>
-          <div className="container all-track-block ">
-            {this.showList()}
-          </div>
-        </div>
-
-        <div className="container all-track col-md-12 col-xs-12 col-sm-12 col-lg-6">
-          <h5>Added songs :</h5>
-          <div className="container all-track-block ">
-            {this.storeMusicData()}
-          </div>
-        </div>
-        </div>
-      </div>
-    );
-  }
-// main
   render(){
     return (
       <div>
-        {this.showDetails()}
+        <div className="container create-playlist">
+          <h4>Create PLAYLIST:</h4>
+          <div className=" row">
+          <div className="container all-track col-md-12 col-xs-12 col-sm-12 col-lg-6">
+            <h5>All tracks:</h5>
+            <div className="container all-track-block ">
+              {this.showList()}
+            </div>
+          </div>
+
+          <div className="container all-track col-md-12 col-xs-12 col-sm-12 col-lg-6">
+            <h5>Added songs :</h5>
+            <div className="container all-track-block ">
+              {this.storeMusicData()}
+            </div>
+          </div>
+          </div>
+        </div>
         <DetailsMusic/>
       </div>
     );
@@ -109,7 +88,6 @@ class MusicAdd extends Component {
   }
 }
 
-// <button type="button" onClick={this.getState}>Get State!</button>
 
 function mapStateToProps(state) {
   return {
@@ -127,3 +105,14 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 export default connect (mapStateToProps, mapDispatchToProps)(MusicAdd);
+
+
+  // showState(){
+  //   return this.state.addTrack.map((track) =>{
+  //     return (
+  //       <div>
+  //         {track.name}
+  //       </div>
+  //     );
+  //   });
+  // }

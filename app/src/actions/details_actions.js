@@ -10,7 +10,6 @@ export function details(track) {
 }
 
 export function addNewTrack(track) {
-  console.log("THISS:");
     console.log(track);
     return {
       type: ADD_NEW_TRACK,

@@ -33,7 +33,6 @@ export function musicInfoReducers(state = initialState, action) {
 }
 
 export function allTracksReducers(state = allTracks, action) {
-  console.log(action.id);
   switch (action.type) {
     case SHOW_MUSIC:
       return [...state, action.payload];

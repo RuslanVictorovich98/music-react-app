@@ -10,21 +10,21 @@ import '../index.css';
 
 class DetailsMusic extends Component {
   state = {
-    result: [{name: 1}],
+    result: [],
   };
 
 // DETAILS MUSIC
-    detailsStoreMusicData(){
-      return this.props.trackDetails.map ((track, i) => {
-        return (
-          <div key={i}>
-            <h4>{track.artist} - {track.name}</h4>
-            <p>time: {track.time}</p>
-            <p>year: {track.year}</p>
-          </div>
-        );
-      });
-    }
+  detailsStoreMusicData(){
+    return this.props.trackDetails.map ((track, i) => {
+      return (
+        <div key={i}>
+          <h4>{track.artist} - {track.name}</h4>
+          <p>time: {track.time}</p>
+          <p>year: {track.year}</p>
+        </div>
+      );
+    });
+  }
 
 // CREATE TRACK
   id      = React.createRef();
@@ -32,11 +32,11 @@ class DetailsMusic extends Component {
   time    = React.createRef();
   year    = React.createRef();
   artist  = React.createRef();
+  form    = React.createRef();
 
   handleSubmit = this.handleSubmit.bind(this);
   getState = this.getState.bind(this);
   getState(){}
-  // getState = this.getState.bind(this);
 
   handleSubmit(){ // return new object
      this.setState({result: [{
@@ -52,32 +52,42 @@ class DetailsMusic extends Component {
                  "\nname:" + this.name.current.value +
                  "\ntime:" + this.time.current.value +
                  "\nyear:" + this.year.current.value)
- }
 
-// CREATE NEW TRACK
-   createTrack() {
+     // for (let i = 0, i < 5; i++){
+     //   if (!fields[i].value){
+     //     console.log('field is blank' + fields[i]);
+     //   }
+     // }
+  }
+
+  createTrack() {
     return (
       <div className="add-new-playlist">
-        <form>
+        <form ref={this.form}>
           <div className="form-group">
             <label>id:</label>
-            <input type="number" className="form-control form-control-sm" ref={this.id} id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Edit id"/>
+            <input type="number" className="form-control form-control-sm fields" ref={this.id}
+                    id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Edit id"/>
           </div>
           <div className="form-group">
             <label>Artist:</label>
-            <input type="name" className="form-control form-control-sm" ref={this.artist} id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Edit artist"/>
+            <input type="name" className="form-control form-control-sm fields" ref={this.artist} maxLength="20"
+                    id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Edit artist"/>
           </div>
           <div className="form-group">
             <label >Name:</label>
-            <input type="name" className="form-control form-control-sm" ref={this.name} id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Edit name track"/>
+            <input type="name" className="form-control form-control-sm fields" ref={this.name} maxLength="20"
+                    id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Edit name track"/>
           </div>
           <div className="form-group">
             <label >Time:</label>
-            <input type="time" className="form-control form-control-sm" ref={this.time} id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Edit time track"/>
+            <input type="time" className="form-control form-control-sm fields" ref={this.time}
+                    id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Edit time track"/>
           </div>
           <div className="form-group">
             <label>Year:</label>
-            <input type="number" className="form-control form-control-sm" ref={this.year} id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Edit year"/>
+            <input type="number" className="form-control form-control-sm fields" ref={this.year}
+                    id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Edit year"/>
           </div>
         </form>
         <hr/>
@@ -87,6 +97,7 @@ class DetailsMusic extends Component {
     );
   }
 
+// добавление песни в плейлист "All tracks"
   addNew(){
     return this.state.result.map((track, i) => {
         return (
@@ -99,7 +110,7 @@ class DetailsMusic extends Component {
 
 
 
-// editTrack
+// EDIT TRACK
   edit_id      = React.createRef();
   edit_artist  = React.createRef();
   edit_name    = React.createRef();
@@ -124,6 +135,7 @@ class DetailsMusic extends Component {
                 "\nyear:" + this.edit_year.current.value)
 
   }
+
 // readonly
   editTrack(){
     return this.props.edit.map ((track, i) => {
@@ -172,35 +184,28 @@ class DetailsMusic extends Component {
   }
 
 
-// SHOW TABS
-  showTabs(){
-    return (
-      <div className="container">
-        <ul className="nav nav-tabs" id="myTab" role="tablist">
-          <li className="nav-item">
-            <a className="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Add new track</a>
-          </li>
-          <li className="nav-item">
-            <a className="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Details</a>
-          </li>
-          <li className="nav-item">
-            <a className="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Edit</a>
-          </li>
-        </ul>
-        <div className="tab-content" id="myTabContent">
-          <div className="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab"><br/>{this.createTrack()}</div>
-          <div className="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab"><br/>{this.detailsStoreMusicData()}</div>
-          <div className="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab"><br/>{this.editTrack()}</div>
-        </div>
-      </div>
-    );
-  }
-
 // return HTML
   render(){
     return (
       <div className="container details_music_containers">
-          {this.showTabs()}
+        <div className="container">
+          <ul className="nav nav-tabs" id="myTab" role="tablist">
+            <li className="nav-item">
+              <a className="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Add new track</a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Details</a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Edit</a>
+            </li>
+          </ul>
+          <div className="tab-content" id="myTabContent">
+            <div className="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab"><br/>{this.createTrack()}</div>
+            <div className="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab"><br/>{this.detailsStoreMusicData()}</div>
+            <div className="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab"><br/>{this.editTrack()}</div>
+          </div>
+        </div>
       </div>
     );
   }
