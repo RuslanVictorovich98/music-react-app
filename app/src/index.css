@@ -22,17 +22,41 @@
   /* background: white; */
 }
 body {
-  background: #DCDCDC;
+  background: white;
+  /*background: #DCDCDC;*/
 }
 
+.top-container{
+  /*background: white;*/
+  /*height: 300px;*/
+  display: flex;
+  padding-left: 25%;
 
+  padding-top: 20px;
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+}
+.top-container h3 {
+  border-radius: 5px;
+  padding: 5px;
+  border:1px solid black;
+  margin-right: 20px;
+}
+.top-container h3:hover {
+  background: black;
+  color: white;
+}
+
+/**/
 /* music_add_containers */
 .create-playlist {
   height: auto;
   width: 65%;
   display: inline-block;
   vertical-align: middle;
-  background: white;
+  /*color: white;*/
+  border: 1px solid black;
+  /*background: black;*/
   border-radius: 5px;
   padding-bottom: 2%;
   margin-right: 1%;
