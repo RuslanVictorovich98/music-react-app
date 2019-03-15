@@ -18,6 +18,7 @@ export function remove(music) {
 }
 
 export function saveChanges(music, id) {
+  alert("DETAILS ACTIONS:");
   return {
     type: SAVE_CHANGES,
     payload: music,

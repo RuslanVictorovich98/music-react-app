@@ -45,7 +45,11 @@ class DetailsMusic extends Component {
                        ["name"]: this.name.current.value,
                        ["time"]: this.time.current.value,
                        ["year"]:+this.year.current.value
-                      }]})
+                      }]}, ()=>{return this.state.result.map((track, i) => {
+                                            return this.props.addNewTrack(track)
+                                    })
+                                    });
+
 
      console.log("Your input value is: " + this.state +
                  "\nartist:"   + this.artist.current.value +
@@ -82,20 +86,10 @@ class DetailsMusic extends Component {
         </form>
         <hr/>
         <button className="btn btn-sm btn-success"  onClick={ this.handleSubmit}>create</button>
-          {this.addNew()}
       </div>
     );
   }
 
-  addNew(){
-    return this.state.result.map((track, i) => {
-        return (
-          <div key={i}>
-            <button className="btn btn-sm btn-success"  onClick={() => this.props.addNewTrack(track)}>Send</button>
-          </div>
-        );
-    });
-  }
 
 
 
@@ -114,7 +108,10 @@ class DetailsMusic extends Component {
                       ["name"]: this.edit_name.current.value,
                       ["time"]: this.edit_time.current.value,
                       ["year"]:+this.edit_year.current.value
-                     }]})
+                     }]}, ()=>{ return this.state.result.map((track, i) => {
+                                          return this.props.saveChanges(track, track.id)
+                                        })
+                                       });
 
     console.log("Your input value is: " + this.state +
                 "\nid:" + this.edit_id.current.value +
@@ -123,7 +120,7 @@ class DetailsMusic extends Component {
                 "\ntime:" + this.edit_time.current.value +
                 "\nyear:" + this.edit_year.current.value)
 
-  }
+  }// промежуточный метод
 // readonly
   editTrack(){
     return this.props.edit.map ((track, i) => {
@@ -154,23 +151,10 @@ class DetailsMusic extends Component {
             </div>
           </form>
           <button type="submit" onClick={ this.editHandleSubmit} className="btn btn-sm btn-primary btn_group">EDIT</button>
-            {this.editNew()}
         </div>
       );
     });
   }
-
-  editNew(){
-    return this.state.result.map((track, i) => {
-        return (
-          <div key={i}>
-            <button type="submit" onClick={() => this.props.saveChanges(track, track.id)} className="btn btn-sm btn-primary btn_group">Save changes {track.id}</button>
-          </div>
-        );
-
-    });
-  }
-
 
 // SHOW TABS
   showTabs(){
@@ -178,18 +162,18 @@ class DetailsMusic extends Component {
       <div className="container">
         <ul className="nav nav-tabs" id="myTab" role="tablist">
           <li className="nav-item">
-            <a className="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Add new track</a>
+            <a className="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Details</a>
           </li>
           <li className="nav-item">
-            <a className="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Details</a>
+            <a className="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Add new track</a>
           </li>
           <li className="nav-item">
             <a className="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Edit</a>
           </li>
         </ul>
         <div className="tab-content" id="myTabContent">
-          <div className="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab"><br/>{this.createTrack()}</div>
-          <div className="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab"><br/>{this.detailsStoreMusicData()}</div>
+          <div className="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab"><br/>{this.detailsStoreMusicData()}</div>
+          <div className="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab"><br/>{this.createTrack()}</div>
           <div className="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab"><br/>{this.editTrack()}</div>
         </div>
       </div>
@@ -199,8 +183,9 @@ class DetailsMusic extends Component {
 // return HTML
   render(){
     return (
-      <div className="container details_music_containers">
+      <div className="container details_music_containers align-self-start">
           {this.showTabs()}
+
       </div>
     );
   }

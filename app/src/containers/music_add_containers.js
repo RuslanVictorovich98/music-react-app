@@ -77,18 +77,19 @@ class MusicAdd extends Component {
 // return HTML
   showDetails(){
     return (
-      <div className="container create-playlist ">
+      <div className="container create-playlist">
+
         <h4>Create PLAYLIST:</h4>
         <div className=" row">
         <div className="container all-track col-md-12 col-xs-12 col-sm-12 col-lg-6">
-          <h5>All tracks:</h5>
+          <h5>All tracks:</h5><hr/>
           <div className="container all-track-block ">
             {this.showList()}
           </div>
         </div>
 
         <div className="container all-track col-md-12 col-xs-12 col-sm-12 col-lg-6">
-          <h5>Added songs :</h5>
+          <h5>Added songs :</h5><hr/>
           <div className="container all-track-block ">
             {this.storeMusicData()}
           </div>
@@ -100,9 +101,9 @@ class MusicAdd extends Component {
 // main
   render(){
     return (
-      <div>
-        {this.showDetails()}
-        <DetailsMusic/>
+      <div className="row">
+        <div className="col-lg-8 col-md-12 col-xs-12 col-sm-12">{this.showDetails()}</div>
+        <div className="col-lg-4 col-md-12 col-xs-12 col-sm-12 details_h4"><h4>Details:</h4><DetailsMusic/></div>
       </div>
     );
 

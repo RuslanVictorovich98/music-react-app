@@ -5,19 +5,95 @@ const initialState =  [];
 
 const allTracks =  [
     {
-      id: 1,
       artist: "Drake",
       name: "Black",
       time: "2:15",
       year: 2012,
     },
     {
-      id: 2,
       artist: "Adel",
       name: "White",
       time: "3:10",
       year: 2018,
-    }
+    },
+  {
+    artist: "Adel",
+    name: "White",
+    time: "3:10",
+    year: 2018,
+  },
+  {
+    artist: "Adel",
+    name: "White",
+    time: "3:10",
+    year: 2018,
+  },
+  {
+    artist: "Adel",
+    name: "White",
+    time: "3:10",
+    year: 2018,
+  },
+  {
+    artist: "Adel",
+    name: "White",
+    time: "3:10",
+    year: 2018,
+  },
+  {
+    artist: "Adel",
+    name: "White",
+    time: "3:10",
+    year: 2018,
+  },
+  {
+    artist: "Adel",
+    name: "White",
+    time: "3:10",
+    year: 2018,
+  },
+  {
+    artist: "Adel",
+    name: "White",
+    time: "3:10",
+    year: 2018,
+  },
+  {
+    artist: "Adel",
+    name: "White",
+    time: "3:10",
+    year: 2018,
+  },
+  {
+    artist: "Adel",
+    name: "White",
+    time: "3:10",
+    year: 2018,
+  },
+  {
+    artist: "Adel",
+    name: "White",
+    time: "3:10",
+    year: 2018,
+  },
+  {
+    artist: "Adel",
+    name: "White",
+    time: "3:10",
+    year: 2018,
+  },
+  {
+    artist: "Adel",
+    name: "White",
+    time: "3:10",
+    year: 2018,
+  },
+  {
+    artist: "Adel",
+    name: "White",
+    time: "3:10",
+    year: 2018,
+  }
   ];
 
 export function musicInfoReducers(state = initialState, action) {
